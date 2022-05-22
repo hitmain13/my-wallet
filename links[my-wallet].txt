@@ -1,0 +1,7 @@
+LISTA DE LINKS AULA - React e TypeScript: desenvolvendo um Dashboard
+
+React Switch
+https://www.npmjs.com/package/react-switch
+
+HTML emoji
+https://www.w3schools.com/html/html_emojis.asp
