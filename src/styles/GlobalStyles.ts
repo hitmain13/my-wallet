@@ -20,4 +20,7 @@ export default createGlobalStyle`
     button {
         cursor: pointer;
     }
+    h1 {
+        font-style: italic;
+    }
 `
