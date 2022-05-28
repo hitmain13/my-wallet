@@ -1,3 +1,4 @@
+[![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/higorpo/higorflix/blob/master/LICENSE) [![siga-me](https://img.shields.io/github/followers/hitmain13?label=Siga-me&style=social)]()
 <<<<<<< HEAD
 # Getting Started with Create React App
 
