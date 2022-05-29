@@ -15,9 +15,12 @@ export const Container = styled.div`
 `;
 
 export const Profile = styled.div`
-    color: ${props => props.theme.colors.white};    
+    color: ${props => props.theme.colors.white};
+    margin-right: 40px;    
 `;
 
-export const Welcome = styled.h3``;
+export const Welcome = styled.h3`
+    font-size: 1.4em;
+`;
 
 export const UserName = styled.span``;

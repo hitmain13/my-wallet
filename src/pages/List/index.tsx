@@ -59,7 +59,7 @@ const List: React.FC = () => {
     const titleOptions = useMemo(() => {
         return type === 'entry-balance' ? {
             title: 'Entradas',
-            lineColor: '#F7931B'
+            lineColor: '#34d058'
         } : {
             title: 'Saídas',
             lineColor: '#E44C4E'

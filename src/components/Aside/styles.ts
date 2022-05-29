@@ -10,7 +10,7 @@ export const Container = styled.div`
     border-right: 1px solid ${props => props.theme.colors.gray};
 `;
 
-export const Header = styled.header`
+export const Header = styled.a`
     height: 70px;
     display: flex;
     align-items: center;
@@ -19,11 +19,16 @@ export const Header = styled.header`
 export const LogoImg = styled.img`
     height: 40px;
     width: 40px;
+    cursor: pointer;
 `;
 
 export const Title = styled.h3`
+    font-size: 1.8em;
+    font-style: italic;
+    font-weight: 500;
     color: ${props => props.theme.colors.white};
     margin-left: 10px;
+    cursor: pointer;
 `;
 
 export const MenuContainer = styled.nav`
@@ -34,7 +39,7 @@ export const MenuContainer = styled.nav`
 `;
 
 export const MenuItemLink = styled(Link)`
-    color: ${props => props.theme.colors.info};
+    color: ${props => props.theme.colors.white};
     text-decoration: none;
 
     margin: 7px 0;

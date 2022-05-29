@@ -1,24 +1,18 @@
 import React, { useState } from 'react';
+import DarkModeToggle from "react-dark-mode-toggle";
 
-import { 
-    Container,
-    ToggleLabel,
-    ToggleSelector
-    } from './styles'
+import { Container } from './styles'
 
 export const Toggle: React.FC = () => {
-    const [theme, setTheme] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(() => false);
 
     return (
-    <Container>
-        <ToggleLabel>Claro</ToggleLabel>
-        <ToggleSelector 
-            checked={theme}
-            checkedIcon={false}
-            uncheckedIcon={false}
-            onChange={() => setTheme(!theme)}
-        />
-        <ToggleLabel>Escuro</ToggleLabel>
-    </Container>
+        <Container>
+            <DarkModeToggle
+                onChange={setIsDarkMode}
+                checked={isDarkMode}
+                size={75}
+            />
+        </Container>
     )
 }
