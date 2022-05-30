@@ -23,39 +23,71 @@ interface IData {
 }
 
 const List: React.FC = () => {
-    const months = [
-        { value: 9, label: 'Setembro' },
-        { value: 8, label: 'Agosto' },
-        { value: 7, label: 'Julho' }
-    ]
-
-    const years = [
-        { value: 2020, label: 2020 },
-        { value: 2019, label: 2019 },
-        { value: 2018, label: 2018 }
-    ]
 
     const [data, setData] = useState<IData[]>([]);
+    const [monthSelected, setMonthSelected] = useState<string>(String(new Date().getMonth() + 1));
+    const [yearSelected, setYearSelected] = useState<string>(String(new Date().getFullYear()));
 
     const { type } = useParams();
-    const listData = useMemo(() => {
+    const listDate = useMemo(() => {
         return type === 'entry-balance' ? gains : expenses;
     }, [type])
 
-    useEffect(() => {
-        const response = listData.map(item => {
-            const id =+ 1
+    const months = [
+        { value: 9, label: 'Setembro' },
+        { value: 8, label: 'Agosto' },
+        { value: 1, label: 'Janeiro' },
+        { value: 2, label: 'Fevereiro' },
+        { value: 5, label: 'Maio' },
+        { value: 6, label: 'Junho' },
+        { value: 4, label: 'Abril' },
+        { value: 7, label: 'Julho' }
+    ]
+
+    const years = useMemo(() => {
+        let uniqueYears: number[] = [];
+
+        listDate.forEach(item => {
+            const date = new Date(item.date);
+            const year = date.getFullYear();
+
+            if (!uniqueYears.includes(year)) {
+                uniqueYears.push(year);
+            }
+        })
+        return uniqueYears.map(year => {
             return {
-                id: String(listData.indexOf(item)),
+                value: year,
+                label: year,
+            }
+        })
+    }, [listDate])
+
+    useEffect(() => {
+        const filteredAllDates = listDate.filter(currenCard => {
+            const cardDate = new Date(currenCard.date) // A data é devolvida com dia anterior da data real.
+            cardDate.setDate(cardDate.getDate() + 1) // É aplicada adição de +1 dia com o setDate para correção.
+            Intl.DateTimeFormat('pt-br').format(cardDate)
+
+            const month = String(cardDate.getMonth() + 1);
+            const year = String(cardDate.getFullYear());
+
+            return month === monthSelected && year === yearSelected
+        });
+
+        const formattedDate = filteredAllDates.map(item => {
+            return {
+                id: String(listDate.indexOf(item)),
                 description: item.description,
                 amountFormatted: formatCurrency(Number(item.amount)),
                 dateFormatted: formatDate(item.date),
                 tagColor: item.frequency === 'eventual' ? '#4E41F0' : '#E44C4E'
             }
         })
-        setData(response);
-    }, [type])
+        setData(formattedDate);
+        console.log(formattedDate)
 
+    }, [listDate, monthSelected, yearSelected, data.length])
     const titleOptions = useMemo(() => {
         return type === 'entry-balance' ? {
             title: 'Entradas',
@@ -69,8 +101,16 @@ const List: React.FC = () => {
     return (
         <Container>
             <ContentHeader title={titleOptions.title} lineColor={titleOptions.lineColor}>
-                <SelectInput options={months} />
-                <SelectInput options={years} />
+                <SelectInput
+                    options={months}
+                    defaultValue={monthSelected}
+                    onChange={(e) => setMonthSelected(e.target.value)}
+                />
+                <SelectInput
+                    options={years}
+                    defaultValue={yearSelected}
+                    onChange={(e) => setYearSelected(e.target.value)}
+                />
             </ContentHeader>
 
             <Filters>
@@ -87,21 +127,18 @@ const List: React.FC = () => {
                 </button>
             </Filters>
 
-            <Content>
-                {
-                    data.map(item => (
-                        <HistoryFinanceCard
-                            key={item.id}
-                            tagColor={item.tagColor}
-                            title={item.description}
-                            subtitle={item.dateFormatted}
-                            amount={item.amountFormatted}
-                        />
-                    ))
-
-                }
+            <Content> {
+                data.map(item => (
+                    <HistoryFinanceCard
+                        key={item.id}
+                        tagColor={item.tagColor}
+                        title={item.description}
+                        subtitle={item.dateFormatted}
+                        amount={item.amountFormatted}
+                    />
+                ))
+            }
             </Content>
-
         </Container>
     )
 }

@@ -10,7 +10,7 @@ export const Container = styled.div`
     border-right: 1px solid ${props => props.theme.colors.gray};
 `;
 
-export const Header = styled.a`
+export const Header = styled.div`
     height: 70px;
     display: flex;
     align-items: center;

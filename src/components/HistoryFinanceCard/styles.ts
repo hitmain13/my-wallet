@@ -6,7 +6,7 @@ interface ITagProps {
 }
 
 export const Container = styled.li`
-    background-color: ${props => props.theme.colors.secondary};
+    background: linear-gradient(90deg, ${props => props.theme.colors.quartiary});
 
     list-style: none;
     border-radius: 5px;
@@ -25,10 +25,13 @@ export const Container = styled.li`
     transition: all 0.2s;
 
     position: relative;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    opacity: 0.8;
 
     &:hover {
-        opacity: 0.7;
-        transform: translateX(5px);
+        opacity: 1;
+        transform: translateX(2px);
+        margin-left: 10px;
     }
 
     > div {

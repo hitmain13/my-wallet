@@ -16,8 +16,8 @@ const Aside: React.FC = () => {
     return (
         <Container>
             <Header>
-                <LogoImg src={logoImg} alt="Logo Minha Carteira" />
                 <MenuItemLink to='/dashboard'>
+                    <LogoImg src={logoImg} alt="Logo Minha Carteira" />
                     <Title>My Wallet</Title>
                 </MenuItemLink>
             </Header>

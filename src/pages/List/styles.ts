@@ -15,13 +15,20 @@ export const Filters = styled.div`
         font-style: italic;
         color: ${props => props.theme.colors.white};
         
-        background: none;
+        background: linear-gradient(90deg, ${props => props.theme.colors.quartiary});
         margin: 0 10px 30px 50px;
 
-        transition: opacity .2s;
+        transition: all .2s;
+        
+        padding: 10px;
+
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
+        border: 1px solid rgba(0,0,0,0.5);
+        border-radius: 5px;
 
         :hover {
-            opacity: .7;
+            color: #FFF;
+            border-color: ${props => props.theme.colors.tertiary}
         }
     }
 
