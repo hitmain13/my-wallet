@@ -22,8 +22,8 @@ interface IData {
 
 const List: React.FC = () => {
     const [cardData, setCardData] = useState<IData[]>([]);
-    const [monthSelected, setMonthSelected] = useState<string>(String(new Date().getMonth() + 1));
-    const [yearSelected, setYearSelected] = useState<string>(String(new Date().getFullYear()));
+    const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth() + 1);
+    const [yearSelected, setYearSelected] = useState<number>(new Date().getFullYear());
     const [selectedFrequencyType, setSelectedFrequencyType] = useState(['recurrent', 'eventual'])
 
     const { balanceType } = useParams();
@@ -34,17 +34,15 @@ const List: React.FC = () => {
 
     const pageDatas = useMemo(() => {
         return balanceType === 'entry-balance' ? {
-                title: 'Entradas',
-                lineColor: '#34d058',
-                listDate: gains
-            } : {
-                title: 'Saídas',
-                lineColor: '#E44C4E',
-                listDate: expenses
-            }
+            title: 'Entradas',
+            lineColor: '#34d058',
+            listDate: gains
+        } : {
+            title: 'Saídas',
+            lineColor: '#E44C4E',
+            listDate: expenses
+        }
     }, [balanceType])
-
-    console.log(pageDatas)
 
     const months = useMemo(() => {
         return listMonths.map((month, index) => {
@@ -83,7 +81,26 @@ const List: React.FC = () => {
         } else {
             setSelectedFrequencyType((prev) => [...prev, frequency])
         }
+    }
 
+    const handleMonthSelected = (month: string) => {
+        try {
+            const parseMonth = Number(month);
+            setMonthSelected(parseMonth);
+        }
+        catch (err) {
+            throw new Error('Invalid month value. Insert a acceptable value (0 - 24).')
+        }
+    }
+    
+    const handleYearSelected = (year: string) => {
+        try {
+            const parseMonth = Number(year);
+            setYearSelected(parseMonth);
+        }
+        catch (err) {
+            throw new Error('Invalid year value. Insert integer number.')
+        }
     }
 
     useEffect(() => {
@@ -92,8 +109,8 @@ const List: React.FC = () => {
             cardDate.setDate(cardDate.getDate() + 1)    // É aplicada adição de +1 dia com o setDate para correção.
             Intl.DateTimeFormat('pt-br').format(cardDate)
 
-            const month = String(cardDate.getMonth() + 1);
-            const year = String(cardDate.getFullYear());
+            const month = cardDate.getMonth() + 1;
+            const year = cardDate.getFullYear();
 
             return month === monthSelected && year === yearSelected && selectedFrequencyType.includes(currentCard.frequency)
         });
@@ -116,12 +133,12 @@ const List: React.FC = () => {
                 <SelectInput
                     options={months}
                     defaultValue={monthSelected}
-                    onChange={(e) => setMonthSelected(e.target.value)}
+                    onChange={(e) => handleMonthSelected(e.target.value)}
                 />
                 <SelectInput
                     options={years}
                     defaultValue={yearSelected}
-                    onChange={(e) => setYearSelected(e.target.value)}
+                    onChange={(e) => handleYearSelected(e.target.value)}
                 />
             </ContentHeader>
 
