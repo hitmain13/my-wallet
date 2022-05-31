@@ -2,10 +2,11 @@ import styled from 'styled-components'
 
 export const Container = styled.div``;
 
-export const Content = styled.div``;
+export const Content = styled.main``;
 
 export const Filters = styled.div`
     width: 100%;
+    
     display: flex;
     justify-content: center;
     
@@ -15,20 +16,22 @@ export const Filters = styled.div`
         font-style: italic;
         color: ${props => props.theme.colors.white};
         
-        background: linear-gradient(90deg, ${props => props.theme.colors.quartiary});
+        background: ${props => props.theme.colors.black};
         margin: 0 10px 30px 50px;
 
-        transition: all .2s;
         
         padding: 10px;
-
+        
         box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
         border: 1px solid rgba(0,0,0,0.5);
         border-radius: 5px;
+        
+        transition: all .2s;
+        opacity: 0.3;
 
         :hover {
-            color: #FFF;
-            border-color: ${props => props.theme.colors.tertiary}
+            border-color: ${props => props.theme.colors.tertiary};
+            opacity: 0.5;
         }
     }
 
@@ -51,4 +54,9 @@ export const Filters = styled.div`
             border-radius: 3px 0;
             margin: 0 auto;
         }
+
+    .tag-actived {
+        background: linear-gradient(90deg, ${props => props.theme.colors.quartiary});
+        opacity: 1;
+    }
 `;

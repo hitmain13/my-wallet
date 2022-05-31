@@ -9,7 +9,7 @@ const App: React.FC = () => (
     <Layout>
         <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/list/:type" element={<List />} />
+            <Route path="/list/:balanceType" element={<List />} />
         </Routes>
     </Layout>
 )
