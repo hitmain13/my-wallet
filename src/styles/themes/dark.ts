@@ -14,6 +14,7 @@ export default {
 
         success: '#4E41F0',
         info: '#F7931B',
-        warning: '#E44C4E'
+        warning: '#E44C4E',
+        accepted: '#4E92E2'
     }
 }

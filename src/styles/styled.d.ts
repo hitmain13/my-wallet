@@ -18,6 +18,7 @@ declare module 'styled-components' {
             success: string;
             info: string;
             warning: string;
+            accepted: string;
         },
     };
 };
