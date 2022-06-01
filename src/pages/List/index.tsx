@@ -70,7 +70,7 @@ const List: React.FC = () => {
                 label: year,
             }
         })
-    }, [listDate])
+    }, [pageDatas])
 
     const handleFrequencyFilter = (frequency: string) => {
         const frequencyFiltered = selectedFrequencyType.findIndex(item => item === frequency)
