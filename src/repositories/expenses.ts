@@ -1,5 +1,5 @@
 export default [
-  {"description":"Energia elétrica",      "amount":"150.55","type":"saída","frequency":"recurrent","date":"2022-05-25"},
+  {"description":"Energia elétrica",      "amount":"150.55","type":"saída","frequency":"recurrent","date":"2022-06-25"},
   {"description":"Água",                  "amount":"75.55", "type":"saída","frequency":"recurrent","date":"2020-01-15"},
   {"description": "Telefone",             "amount":"99.99", "type":"saída","frequency":"recurrent","date":"2020-01-23"},
   {"description":"Plano de Saúde",        "amount":"300.00","type":"saída","frequency":"recurrent","date":"2020-01-23"},
