@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
-import { Container, CustomTooltip, TooltipLabel } from './styles'
+import { Container, ChartContainer, Header, LegendContainer, Legend } from './styles'
 
-import formatCurrency from '../../utils/formatCurrency'
-
-import { ResponsiveContainer, LineChart, Line, XAxis, CartesianGrid, Tooltip } from 'recharts'
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
 interface IHistoryBoxProps {
     data: {
@@ -17,54 +15,74 @@ interface IHistoryBoxProps {
 }
 
 const HistoryBox: React.FC<IHistoryBoxProps> = ({ data, lineColorAmountGains, lineColorAmountExpenses }) => {
-    const CustomTooltip = (data: any) => {
-        const { active, payload, label } = data;
-        if (active && payload && payload.length) {
-          return (
-            <div style={{ backgroundColor: '#FFF'}}>
-              <p style={{fontSize: '20px', color: '#000'}}>{`${payload[0].value}`} / {`${payload[1].value}`} / {`${label}`}</p>
-            </div>
-          );
-        }
-        return null;
-      };
+
+    const higherAmount = () => data.map((item) => item.gainAmount > item.expenseAmount ? item.gainAmount : item.expenseAmount)
+
+    const responsiveChart = useMemo(() => {
+        return window.screen.width
+    }, [window.screen.width])
+    console.log(window.screen.width)
 
     return (
         <Container>
-            <h2>Histórico de saldo</h2>
+            <Header>
+                <h2>Histórico de saldo</h2>
+                <LegendContainer>
+                    <Legend color={lineColorAmountGains}>
+                        <div>30%</div>
+                        <span>Entradas</span>
+                    </Legend>
+                    <Legend color={lineColorAmountExpenses}>
+                        <div>30%</div>
+                        <span>Saídas</span>
+                    </Legend>
+                </LegendContainer>
+            </Header>
 
-            <ResponsiveContainer width="100%">
-                <LineChart data={data} margin={{ top: 5, right: 20, left: 20, bottom: 5 }} >
-                    <CartesianGrid strokeDasharray='5 3' stroke='#cecece' />
-                    <XAxis dataKey='month' />
-                    <Tooltip
-                        offset={30}
-                        animationEasing='linear'
-                        animationDuration={50}
-                        content={<CustomTooltip/>}
+            <ChartContainer>
+                <ResponsiveContainer width='100%' height={300}>
+                    <LineChart
+                        width={window.screen.width}
+                        data={data}
+                        margin={{
+                            top: 5,
+                            right: 20,
+                            left: 20,
+                            bottom: 5
+                        }} >
+                        <CartesianGrid strokeDasharray='5 3' stroke='#cecece' />
+                        <YAxis dataKey={higherAmount} />
+                        <XAxis dataKey='month' />
+                        <Tooltip
+                            filterNull={false}
+                            contentStyle={{ backgroundColor: '#0000' }}
+                            offset={5}
+                            animationDuration={70}
+                            active={true}
                         // formatter={(value) => formatCurrency(Number(value))}
-                    />
-                    <Line
-                        type='monotone'
-                        dataKey='gainAmount'
-                        name="Entradas"
-                        stroke={lineColorAmountGains}
-                        strokeWidth={4}
-                        dot={{ r: 4 }}
-                        activeDot={{ r: 6 }}
-                    />
-                    <Line
-                        type='monotone'
-                        dataKey='expenseAmount'
-                        name="Saídas"
-                        stroke={lineColorAmountExpenses}
-                        strokeWidth={4}
-                        dot={{ r: 4 }}
-                        activeDot={{ r: 6 }}
-                    />
-                </LineChart>
-            </ResponsiveContainer>
-        </Container>
+                        />
+                        <Line
+                            type='monotone'
+                            dataKey='gainAmount'
+                            name="Entradas"
+                            stroke={lineColorAmountGains}
+                            strokeWidth={4}
+                            dot={{ r: 4 }}
+                            activeDot={{ r: 6 }}
+                        />
+                        <Line
+                            type='monotone'
+                            dataKey='expenseAmount'
+                            name="Saídas"
+                            stroke={lineColorAmountExpenses}
+                            strokeWidth={4}
+                            dot={{ r: 4 }}
+                            activeDot={{ r: 6 }}
+                        />
+                    </LineChart>
+                </ResponsiveContainer>
+            </ChartContainer>
+        </Container >
     )
 }
 
