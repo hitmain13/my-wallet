@@ -7,6 +7,7 @@ export default {
         tertiary: '#F5F5F5',
         quartiary: 'rgba(255,255,255,1) 0%, rgba(13,17,23, 0) 50%, rgba(255,255,255,1) 100%',
 
+        letter: '#000',
         white: '#000',
         black: '#FFF',
         gray: '#BFBFBF',

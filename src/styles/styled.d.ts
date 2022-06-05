@@ -10,6 +10,7 @@ declare module 'styled-components' {
             tertiary: string;
             quartiary: string;
 
+            letter: string;
             white: string;
             black: string;
             gray: string;
