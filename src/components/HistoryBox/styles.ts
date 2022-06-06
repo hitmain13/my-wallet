@@ -8,14 +8,11 @@ export const Container = styled.div`
 
     color: ${props => props.theme.colors.white};
 
-
     border-radius: 7px;
-
-
 `;
 
 export const ChartContainer = styled.div`
-    flex: 1;
+    width: 100%;
     height: 300px;
 `;
 
@@ -33,12 +30,14 @@ export const Header = styled.header`
         margin: 15px 0;
         padding-left: 27px;
     }
-    `;
+`;
+
 export const LegendContainer = styled.ul`
     display: flex;
 
     list-style: none;
 `;
+
 export const Legend = styled.li`
 
     display: flex;

@@ -3,15 +3,19 @@ import DarkModeToggle from "react-dark-mode-toggle";
 
 import { Container } from './styles'
 
-export const Toggle: React.FC = () => {
-    const [isDarkMode, setIsDarkMode] = useState(() => false);
+interface IToggleProps {
+    checked: boolean,
+    onChange(): void,
+}
 
+export const Toggle: React.FC<IToggleProps> = ({ checked, onChange }) => {
     return (
         <Container>
             <DarkModeToggle
-                onChange={setIsDarkMode}
-                checked={isDarkMode}
+                onChange={onChange}
+                checked={checked}
                 size={75}
+                speed={2.5}
             />
         </Container>
     )

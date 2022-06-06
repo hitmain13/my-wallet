@@ -6,12 +6,10 @@ interface IContentProps {
     children: React.ReactNode;
 }
 
-const Content: React.FC<IContentProps> = ({children} ) => {
-    return (
-        <Container>
-            { children }
-        </Container>
-    )
-}
+const Content: React.FC<IContentProps> = ({ children }) => (
+    <Container>
+        {children}
+    </Container>
+)
 
 export default Content;

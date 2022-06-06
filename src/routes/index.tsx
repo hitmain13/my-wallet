@@ -1,13 +1,16 @@
 import React from 'react';
 
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { useAuth } from '../hooks/auth'
 
 import App from '../routes/app.routes'
+import Auth from '../routes/auth.routes'
 
-const Routes: React.FC = () => (
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
-)
+const Routers: React.FC = () => {
+    const { logged } = useAuth();
+    console.log(logged)
+    return logged ? <App /> : <Auth />
+}
 
-export default Routes;
+export default Routers;

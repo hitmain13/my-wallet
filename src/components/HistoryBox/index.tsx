@@ -1,6 +1,9 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { Container, ChartContainer, Header, LegendContainer, Legend } from './styles'
+
+import formatCurrency from '../../utils/formatCurrency'
+import useWindowDimensions from '../../hooks/useWindowDimensions'
 
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
@@ -10,46 +13,49 @@ interface IHistoryBoxProps {
         gainAmount: number;
         expenseAmount: number;
     }[],
+    legendData: {
+        name: string,
+        percentage: number,
+        color: string,
+    }[],
     lineColorAmountGains: string;
     lineColorAmountExpenses: string;
 }
 
-const HistoryBox: React.FC<IHistoryBoxProps> = ({ data, lineColorAmountGains, lineColorAmountExpenses }) => {
+const HistoryBox: React.FC<IHistoryBoxProps> = ({ data, legendData, lineColorAmountGains, lineColorAmountExpenses }) => {
 
     const higherAmount = () => data.map((item) => item.gainAmount > item.expenseAmount ? item.gainAmount : item.expenseAmount)
 
-    const responsiveChart = useMemo(() => {
-        return window.screen.width
-    }, [window.screen.width])
-    console.log(window.screen.width)
+    const { width } = useWindowDimensions();
 
     return (
         <Container>
             <Header>
                 <h2>Histórico de saldo</h2>
                 <LegendContainer>
-                    <Legend color={lineColorAmountGains}>
-                        <div>30%</div>
-                        <span>Entradas</span>
-                    </Legend>
-                    <Legend color={lineColorAmountExpenses}>
-                        <div>30%</div>
-                        <span>Saídas</span>
-                    </Legend>
+                    {
+                        legendData.map((item) => (
+                            <Legend key={item.name}
+                                color={item.color}>
+                                <div>{item.percentage}%</div>
+                                <span>{item.name}</span>
+                            </Legend>
+                        ))
+                    }
                 </LegendContainer>
             </Header>
 
             <ChartContainer>
-                <ResponsiveContainer width='100%' height={300}>
+                <ResponsiveContainer width={width - 300}>
                     <LineChart
-                        width={window.screen.width}
                         data={data}
                         margin={{
                             top: 5,
                             right: 20,
                             left: 20,
                             bottom: 5
-                        }} >
+                        }}
+                    >
                         <CartesianGrid strokeDasharray='5 3' stroke='#cecece' />
                         <YAxis dataKey={higherAmount} />
                         <XAxis dataKey='month' />
@@ -58,8 +64,7 @@ const HistoryBox: React.FC<IHistoryBoxProps> = ({ data, lineColorAmountGains, li
                             contentStyle={{ backgroundColor: '#0000' }}
                             offset={5}
                             animationDuration={70}
-                            active={true}
-                        // formatter={(value) => formatCurrency(Number(value))}
+                            formatter={(value: number) => formatCurrency(Number(value))}
                         />
                         <Line
                             type='monotone'

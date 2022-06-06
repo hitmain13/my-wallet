@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { PieChart, Sector, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 import { Container, LeftSide, LegendContainer, Legend, RightSide } from './styles'
 
 interface IPieChartsProps {
-    data: {
+    chartData: {
         name: string;
         value: number;
         percentage: number;
@@ -13,13 +13,13 @@ interface IPieChartsProps {
     }[];
 }
 
-const PieChartBox: React.FC<IPieChartsProps> = ({ data }) => (
+const PieChartBox: React.FC<IPieChartsProps> = ({ chartData }) => (
     <Container>
         <LeftSide>
             <h2>Relação</h2>
             <LegendContainer>
                 {
-                    data.map((indicator) => (
+                    chartData.map((indicator) => (
                         <Legend key={indicator.name} color={indicator.color}>
                             <div>{indicator.percentage}%</div>
                             <span>{indicator.name}</span>
@@ -32,20 +32,20 @@ const PieChartBox: React.FC<IPieChartsProps> = ({ data }) => (
         <RightSide>
             <ResponsiveContainer>
                 <PieChart >
-                    <Pie 
-                    data={data} 
-                    dataKey="value" 
-                    paddingAngle={4} 
-                    innerRadius={65} 
-                    outerRadius={100} 
-                    animationBegin={0}
-                    animationDuration={700}
-                    animationEasing='ease'
-                    cornerRadius={2}
-                    cx={200}
-                    > 
+                    <Pie
+                        data={chartData}
+                        dataKey="value"
+                        paddingAngle={4}
+                        innerRadius={65}
+                        outerRadius={100}
+                        animationBegin={0}
+                        animationDuration={700}
+                        animationEasing='ease'
+                        cornerRadius={2}
+                        cx={200}
+                    >
                         {
-                            data.map((indicator) => (
+                            chartData.map((indicator) => (
                                 <Cell key={indicator.name} fill={indicator.color} />
                             ))
                         }

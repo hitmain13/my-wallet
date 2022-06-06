@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate  } from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 
 import Layout from '../components/Layout'
 import Dashboard from '../pages/Dashboard';
@@ -10,7 +10,7 @@ const App: React.FC = () => (
         <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/list/:balanceType" element={<List />} />
-            <Route path="*" element={<Navigate to='/dashboard' />} />
+            <Route path="/" element={<Navigate to='/' />} />
         </Routes>
     </Layout>
 )
