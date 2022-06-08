@@ -1,11 +1,17 @@
-import styled from 'styled-components'
-
+import styled, { css } from 'styled-components'
 
 interface ITagProps {
     color: string;
 }
+interface ITagContainerProps {
+    isExpanded: boolean;
+}
 
-export const Container = styled.li`
+export const Container = styled.div`
+    display: flex;
+`;
+
+export const TagContainer = styled.div<ITagContainerProps>`
     background: linear-gradient(90deg, ${props => props.theme.colors.quartiary});
 
     list-style: none;
@@ -13,25 +19,27 @@ export const Container = styled.li`
     border-style: solid;
     border-width: 1px;
     border-color: ${props => props.theme.colors.gray};
+    color: ${props => props.theme.colors.letter};
 
-    margin: 10px 0;
+    margin: 5px 0;
     padding: 12px 10px;
+    width: 100%;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     cursor: pointer;
     transition: all 0.2s;
 
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    opacity: 0.8;
+
+    margin-right: -105px;
+    transform: translateX(-115px);
 
     &:hover {
-        opacity: 1;
-        transform: translateX(2px);
-        margin-left: 10px;
+        margin-left: 5px;
     }
 
     > div {
@@ -46,9 +54,15 @@ export const Container = styled.li`
             font-weight: 500;
         } 
     }
+
+    ${props => props.isExpanded && css`
+        transform: translateX(0px);
+        margin-right: -10px;
+    `};
+
 `;
 
-export const Tag = styled.div<ITagProps>`
+export const Tag = styled.button<ITagProps>`
     width: 12px;
     height: 60%;
 
@@ -57,4 +71,51 @@ export const Tag = styled.div<ITagProps>`
 
     background-color: ${props => props.color};
     border-radius: 0 4px 4px 0;
+
+`;
+
+export const EditButton = styled.button<ITagContainerProps>`
+    position: relative;
+
+    margin: 30px 5px;
+    padding: 5px;
+    
+    border-radius: 5px;
+
+    font-weight: bold;
+    color: ${props => props.theme.colors.letter};
+    background-color: ${props => props.theme.colors.warning};
+
+    z-index: 0;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.7;
+    }
+    ${props => props.isExpanded && css`
+        visibility: visible;
+    `};
+`;
+
+export const DeleteButton = styled.button<ITagContainerProps>`
+    position: relative;
+
+    margin: 30px 5px;
+    padding: 5px;
+
+    border-radius: 5px;
+
+    font-weight: bold;
+    color: ${props => props.theme.colors.letter};
+    background-color: ${props => props.theme.colors.warning};
+
+    z-index: 0;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.7;
+    }
+    ${props => props.isExpanded && css`
+        visibility: visible;
+    `};
 `;

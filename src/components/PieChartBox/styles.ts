@@ -10,26 +10,53 @@ export const Container = styled.div`
 
     margin: 10px 0;
 
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     background-color: ${props => props.theme.colors.tertiary};
     color: ${props => props.theme.colors.white};
 
     border-radius: 7px;
 
     display: flex;
+
+    @media(max-width: 1279px) {
+        padding: 10px;
+        width: 100%;
+        height: 240px;
+    }
+
+    @media(max-width: 767px) {
+        display: flex;
+        padding: 0px;
+        height: 220px;
+    }
 `;
 
 export const LeftSide = styled.aside`
     padding: 30px 20px;
+    width: 200px;
 
     > h2 {
         margin-bottom: 20px;
+    }
+    @media(max-width: 1345px) {
+        padding: 0 15px 5px;
+        margin-bottom: 7px;
+
+        >h2 { 
+            margin-top: 15px;
+            margin-bottom: 7px;
+        }
+    }
+    @media(max-width: 420px) {
+        padding: 25px;
+        margin-bottom: 7px;
+        width: 170px;
     }
 `;
 
 export const LegendContainer = styled.ul`
     list-style: none;
 
-    height: 175px;
     padding: 5px;
     padding-right: 20px;
     overflow-y: scroll;
@@ -47,6 +74,11 @@ export const LegendContainer = styled.ul`
     ::-webkit-scrollbar-track {
         background-color: ${props => props.theme.colors.tertiary};
     }
+
+    @media(max-width: 1345px) {
+        display: flex;
+        flex-direction: column;
+    }
 `;
 
 export const Legend = styled.li<ILegendProps>`
@@ -55,14 +87,16 @@ export const Legend = styled.li<ILegendProps>`
 
     margin-bottom: 7px;
     
-    > div{
+    > div {
         background-color: ${props => props.color};
 
-        width: 40px;
-        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        font-size: 12px;
+
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
         border-radius: 5px;
 
-        font-size: 14px;
         line-height: 40px;
 
         text-align: center;
@@ -71,10 +105,30 @@ export const Legend = styled.li<ILegendProps>`
     > span {
         margin-left: 5px;
     }
+    @media(max-width: 1345px) {
+        font-size: 14px;
+        margin: 3px 0;
+
+        > div {
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+        }
+
+        >span {
+            margin-left: 7px;
+        }
+    }
 `;
 
 export const RightSide = styled.main`
     display: flex;
     flex: 1;
-    justify-content: center;
+
+    @media(max-width: 1345px) {
+        height: 100%;
+    }
+    @media(max-width: 420px) {
+        height: 220px;
+    }
 `;

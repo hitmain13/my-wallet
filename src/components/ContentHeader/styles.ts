@@ -23,6 +23,7 @@ export const TitleContainer = styled.div<ITitleContainerProps>`
             width: 70px;
             border-bottom: 7px solid ${props => props.lineColor};
 
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
             border-radius: 3px 0;
             margin-left: 2px;
             margin-top: -2px;

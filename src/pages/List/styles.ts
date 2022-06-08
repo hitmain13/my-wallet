@@ -49,14 +49,14 @@ export const Filters = styled.div`
             content: '';
             display: block;
             width: 55px;
-            border-bottom: 7px solid ${props => props.theme.colors.success};
+            border-bottom: 7px solid #4E41F0;
 
             border-radius: 3px 0;
             margin: 0 auto;
         }
 
     .tag-actived {
-        background: linear-gradient(90deg, ${props => props.theme.colors.quartiary});
+        background: ${props => props.theme.colors.quartiary};
         opacity: 1;
     }
 `;

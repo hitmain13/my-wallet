@@ -14,8 +14,18 @@ export const Container = styled.div`
 
 export const Logo = styled.div`
     display: flex;
+    flex-direction: column;
+    
     align-items: center;
-    margin-bottom: 30px;
+    justify-content: center;
+
+    width: 300px;
+    height: 100px;
+    
+    padding: 10px;
+    border-radius: 300px 300px 0 0 ;
+
+    background-color: ${props => props.theme.colors.tertiary};
 
     > h2 {
         color: ${props => props.theme.colors.white};
@@ -30,11 +40,11 @@ export const Logo = styled.div`
 
 export const Form = styled.form`
     width: 300px;
-    height: 300px;
+    height: 350px;
 
     padding: 30px;
 
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
 
     background-color: ${props => props.theme.colors.tertiary};
 `;
@@ -51,4 +61,10 @@ export const FormTitle = styled.h1`
 
             border-radius: 3px 0;
     }
+`;
+
+export const Label = styled.label`
+    color: ${props => props.theme.colors.letter};
+    font-size: 14px;
+
 `;

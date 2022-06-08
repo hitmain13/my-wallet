@@ -2,23 +2,26 @@ import React, { createContext, useState, useContext } from 'react';
 
 interface IAuthContext {
     logged: boolean;
-    signIn(email: string, password: string): void;
+    signIn(email: string, password: string, event: any): void;
     signOut(): void;
 }
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
-const AuthProvider = ({ children }: any) => {
+const AuthProvider= ({ children }: any) => {
     const [logged, setLogged] = useState<boolean>(() => {
-        const isLogged = localStorage.getItem('@my-wallet:logged')
-        return !!isLogged; //Se tem conteúdo, retorna verdadeiro, se não tem conteúdo, retorna falso.
+        const isLogged = localStorage.getItem('@my-wallet:logged');
+
+        return !!isLogged;
     });
 
-    const signIn = (email: string, password: string) => {
-        if (email === '1' && password === '1') {
+    const signIn = (email: string, password: string, event: any) => {
+        console.log(event);
+        event.preventDefault();
+        if(email === '2@2.com' && password === '123'){
             localStorage.setItem('@my-wallet:logged', 'true');
             setLogged(true);
-        } else {
+        }else{
             alert('Senha ou usuário inválidos!');
         }
     }
@@ -29,10 +32,10 @@ const AuthProvider = ({ children }: any) => {
     }
 
     return (
-        <AuthContext.Provider value={{ logged, signIn, signOut }}>
+        <AuthContext.Provider value={{logged, signIn, signOut}}>
             {children}
         </AuthContext.Provider>
-    )
+    );
 }
 
 function useAuth(): IAuthContext {

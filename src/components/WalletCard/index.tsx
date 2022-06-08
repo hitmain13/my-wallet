@@ -29,11 +29,11 @@ const WalletCard: React.FC<IWalletCardProps> = ({ title, amount, footerLabel, ic
 
     return (
         <Container color={color}>
-            <span>{title}</span>
+            <span><strong>{title}</strong></span>
             <h1>
+                <strong>R$ </strong>
                 <CountUp
                     end={amount}
-                    prefix={"R$ "}
                     separator="."
                     decimal=","
                     decimals={2}

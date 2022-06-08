@@ -10,6 +10,7 @@ export const Container = styled.div<IContentProps>`
 
     margin: 10px 0;
 
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     background-color: ${props => props.color};
     color: ${props => props.theme.colors.white};
 
@@ -18,11 +19,28 @@ export const Container = styled.div<IContentProps>`
 
     position: relative;
     overflow: hidden;
+    font-size: 1.4em;
+    transition: all .2s;
+
+    > h1 {
+        transition: all .2s;
+    }
+
+    &:hover {
+        transform: scale(1.01);
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+        h1 {
+            font-size: 1em;
+        }
+        small {
+            transform: translateY(0px);
+        }
+    }
 
     > img {
         height: 125%;
 
-        transform: rotate(-15deg);
+        transform: rotate(-20deg);
 
         position: absolute;
         top: -10px;
@@ -32,7 +50,7 @@ export const Container = styled.div<IContentProps>`
     }
 
     > span {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 500;
     }
 
@@ -40,5 +58,41 @@ export const Container = styled.div<IContentProps>`
         font-size: 12px;
         position: absolute;
         bottom: 10px;
+        transform: translateY(100px);
+        transition: all .2s;
+    }
+
+    @media (max-width: 770px) {
+        > span {
+            font-size: 14px;
+        }
+        > h1 {
+            word-wrap: break-word;
+            font-size: 22px;
+            > strong {
+                display: inline-block;
+                width: 100%;
+                font-size: 16px;
+            }
+        }
+    }
+
+    @media (max-width: 420px) {
+        width: 100%;
+
+        > h1 {
+            display: flex;
+
+            > strong {
+                position: initial;
+                width: auto;
+                font-size: 22px;
+            }
+            
+            > strong::after {
+                display: inline-block;
+                content: " ";
+            }
+        }
     }
 `;

@@ -9,7 +9,7 @@ export const Container = styled.button`
     border-radius: 5px;
 
     font-weight: bold;
-    color: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.letter};
     background-color: ${props => props.theme.colors.warning};
 
     transition: opacity 0.2s;

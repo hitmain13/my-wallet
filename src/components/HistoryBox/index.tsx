@@ -26,7 +26,8 @@ const HistoryBox: React.FC<IHistoryBoxProps> = ({ data, legendData, lineColorAmo
 
     const higherAmount = () => data.map((item) => item.gainAmount > item.expenseAmount ? item.gainAmount : item.expenseAmount)
 
-    const { width } = useWindowDimensions();
+    let { width } = useWindowDimensions();
+    if (width <= 650) width=664 
 
     return (
         <Container>
@@ -61,7 +62,7 @@ const HistoryBox: React.FC<IHistoryBoxProps> = ({ data, legendData, lineColorAmo
                         <XAxis dataKey='month' />
                         <Tooltip
                             filterNull={false}
-                            contentStyle={{ backgroundColor: '#0000' }}
+                            contentStyle={{ backgroundColor: '#FFF1' }}
                             offset={5}
                             animationDuration={70}
                             formatter={(value: number) => formatCurrency(Number(value))}

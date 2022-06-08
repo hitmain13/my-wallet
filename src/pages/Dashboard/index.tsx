@@ -191,7 +191,7 @@ const Dashboard: React.FC = () => {
             }
         })
             .filter((item) => {
-                const currentMonth = new Date().getMonth() + 1;
+                const currentMonth = new Date().getMonth();
                 const currentYear = new Date().getFullYear();
 
                 return (yearSelected === currentYear && item.monthNumber <= currentMonth) || (yearSelected < currentYear)
@@ -260,7 +260,7 @@ const Dashboard: React.FC = () => {
                 const date = new Date(expense.date);
                 const year = date.getFullYear();
                 const month = date.getMonth() + 1;
-
+                
                 return month === monthSelected && year === yearSelected
             })
             .forEach((expense) => {
@@ -287,7 +287,7 @@ const Dashboard: React.FC = () => {
                 color: '#4E41F0'
             }
         ]
-    }, [yearSelected])
+    }, [monthSelected, yearSelected])
 
     const relationGainsRecurrentVSEventual = useMemo(() => {
         let recurrentAmount = 0;
@@ -325,7 +325,7 @@ const Dashboard: React.FC = () => {
                 color: '#4E41F0'
             }
         ]
-    }, [yearSelected])
+    }, [monthSelected, yearSelected])
 
     const handleMonthSelected = useCallback((month: string) => {
         try {
@@ -368,7 +368,7 @@ const Dashboard: React.FC = () => {
                     amount={totalBalance}
                     footerLabel="atualizado com base nas entradas e saídas."
                     icon='dollar'
-                    color='#4E41F0'
+                    color='#3fb51095'
                 />
 
                 <WalletCard
@@ -376,7 +376,7 @@ const Dashboard: React.FC = () => {
                     amount={totalGain}
                     footerLabel="atualizado com base nas entradas e saídas."
                     icon='arrowUp'
-                    color='#F7931B'
+                    color='#c78e23cc'
                 />
 
                 <WalletCard
@@ -384,7 +384,7 @@ const Dashboard: React.FC = () => {
                     amount={totalExpense}
                     footerLabel="atualizado com base nas entradas e saídas."
                     icon='arrowDown'
-                    color='#E44C4E'
+                    color='#bd3b3eb7'
                 />
 
                 <MessageBox

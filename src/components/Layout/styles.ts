@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
-    /*
-    * Layout 
-    * MH = Main Header
-    * AS = Aside
-    * CT = Content
-    */
+/*
+* Layout 
+* MH = Main Header
+* AS = Aside
+* CT = Content
+*/
 
 export const Container = styled.div`
     display: grid;
@@ -17,4 +17,13 @@ export const Container = styled.div`
     'AS CT';
 
     height: 100vh;
+
+    @media (max-width: 760px) {
+        grid-template-columns: 100%;
+        grid-template-rows: 70px auto;
+
+        grid-template-areas:
+        'MH'
+        'CT';
+    }
 `;
