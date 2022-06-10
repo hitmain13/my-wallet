@@ -62,13 +62,13 @@ const Login: React.FC = () => {
             </Form>
             <Label>Para testar, clique em Acessar!</Label>
             <br />
-            <Link target="_blank" href="https://github.com/hitmain13/my-wallet-react.js">
-                <AiFillGithub />Link do repositório
-            </Link>
+            <FooterContainer>
             <Link target="_blank" href="https://www.linkedin.com/in/fabio-matsumoto-7a8682173/">
                 <AiFillLinkedin/>LinkedIn
             </Link>
-            <FooterContainer>
+            <Link target="_blank" href="https://github.com/hitmain13/my-wallet-react.js">
+                <AiFillGithub />Link do repositório
+            </Link>
                 <Label>Projeto ainda em desenvolvimento. Última atualização: <P message={repoDate} />. (GitHub API)</Label>
             </FooterContainer>
         </Container>
