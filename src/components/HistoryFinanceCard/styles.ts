@@ -5,6 +5,7 @@ interface ITagProps {
 }
 interface ITagContainerProps {
     isExpanded: boolean;
+    color: string;
 }
 
 export const Container = styled.div`
@@ -35,8 +36,8 @@ export const TagContainer = styled.div<ITagContainerProps>`
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
-    margin-right: -105px;
-    transform: translateX(-115px);
+    margin-right: -65px;
+    transform: translateX(-85px);
 
     &:hover {
         margin-left: 5px;
@@ -59,7 +60,20 @@ export const TagContainer = styled.div<ITagContainerProps>`
         transform: translateX(0px);
         margin-right: -10px;
     `};
-
+    
+    @media (max-width: 414px) {
+        > h3 {
+            font-size: 1em;
+        }
+        > div {
+            > span {
+                font-size: 14px;
+            }
+            > small {
+                font-size: 10px;
+            }
+        }
+    }
 `;
 
 export const Tag = styled.button<ITagProps>`
@@ -78,16 +92,22 @@ export const EditButton = styled.button<ITagContainerProps>`
     position: relative;
 
     margin: 30px 5px;
-    padding: 5px;
     
     border-radius: 5px;
 
     font-weight: bold;
     color: ${props => props.theme.colors.letter};
-    background-color: ${props => props.theme.colors.warning};
+    background-color: ${props => props.color};
 
     z-index: 0;
     transition: opacity 0.2s;
+    transition: visibility 0.1s;
+    visibility: hidden;
+
+    > svg {
+        width: 30px;
+        height: 30px;
+    }
 
     &:hover {
         opacity: 0.7;
@@ -101,16 +121,22 @@ export const DeleteButton = styled.button<ITagContainerProps>`
     position: relative;
 
     margin: 30px 5px;
-    padding: 5px;
 
     border-radius: 5px;
 
     font-weight: bold;
     color: ${props => props.theme.colors.letter};
-    background-color: ${props => props.theme.colors.warning};
+    background-color: ${props => props.color};
 
     z-index: 0;
     transition: opacity 0.2s;
+    transition: visibility 0.1s;
+    visibility: hidden;
+
+    > svg {
+        width: 30px;
+        height: 30px;
+    }
 
     &:hover {
         opacity: 0.7;

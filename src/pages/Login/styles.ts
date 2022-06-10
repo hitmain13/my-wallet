@@ -52,6 +52,7 @@ export const Form = styled.form`
 export const FormTitle = styled.h1`
     color: ${props => props.theme.colors.white};
     margin-bottom: 40px;
+    font-size: 2em;
 
     &::after {
             content: '';
@@ -66,5 +67,23 @@ export const FormTitle = styled.h1`
 export const Label = styled.label`
     color: ${props => props.theme.colors.letter};
     font-size: 14px;
-
+    margin: 10px 0 0 0;
 `;
+
+export const FooterContainer = styled.div`
+    position: absolute;
+    bottom: 1%;
+`;
+
+export const Link = styled.a`
+    display: flex;
+    justify-content: center;
+    color: ${props => props.theme.colors.letter};
+    font-size: 14px;
+    margin: 5px;
+
+    > svg {
+        width: 25px;
+        height: 20px;
+    }
+    `;

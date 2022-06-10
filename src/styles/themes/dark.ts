@@ -8,6 +8,8 @@ export default {
         quartiary: 'rgba(13,17,23,1) 0%, rgba(13,17,23,0.60) 50%, rgba(13,17,23,1) 100%',
 
         letter: '#FFF',
+        input: '#FFF',
+
         white: '#c9d1d9',
         black: '#000',
         gray: '#30363D',

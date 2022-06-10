@@ -11,6 +11,8 @@ declare module 'styled-components' {
             quartiary: string;
 
             letter: string;
+            input: string;
+    
             white: string;
             black: string;
             gray: string;

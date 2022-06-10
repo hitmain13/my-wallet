@@ -28,6 +28,9 @@ export const TitleContainer = styled.div<ITitleContainerProps>`
             margin-left: 2px;
             margin-top: -2px;
         }
+        @media (max-width: 414px) {
+            font-size: 1.6em;
+        }
     }
 `;
 

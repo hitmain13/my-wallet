@@ -16,7 +16,7 @@ export const Container = styled.div<IContainerProps>`
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
         
-    @media (max-width: 600px) {
+    @media (max-width: 767px) {
         padding-left: 3px;
         position: fixed;
 
@@ -43,7 +43,7 @@ export const Header = styled.div`
     height: 70px;
     display: flex;
     align-items: center;
-    @media (max-width: 600px) {
+    @media (max-width: 767px) {
         margin-right: 5px;
     }
 `;
@@ -52,7 +52,7 @@ export const LogoImg = styled.img`
     height: 40px;
     width: 40px;
     cursor: pointer;
-    @media (max-width: 600px) {
+    @media (max-width: 767px) {
         display: none;
         visibility: hidden;
     }
@@ -156,8 +156,30 @@ export const ToggleMenu = styled.button<IContainerProps>`
         `};
     }
 
-    @media (min-width: 760px) {
+    @media (min-width: 768px) {
         display: none;
         visibility: hidden;
+    }
+`;
+
+export const MenuButton = styled.button`
+    color: ${props => props.theme.colors.white};
+    text-decoration: none;
+    background-color: ${props => props.theme.colors.secondary};
+
+    margin: 7px 0;
+    display: flex;
+    align-items: center;
+
+    transition: opacity .2s;
+
+    font-size: 16px;
+
+    > svg {
+        font-size: 18px;
+        margin-right: 5px;
+    }
+    &:hover {
+        opacity: .7;
     }
 `;

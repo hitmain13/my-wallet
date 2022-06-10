@@ -16,9 +16,8 @@ const AuthProvider= ({ children }: any) => {
     });
 
     const signIn = (email: string, password: string, event: any) => {
-        console.log(event);
         event.preventDefault();
-        if(email === '2@2.com' && password === '123'){
+        if(email === 'email@email.com' && password === '123'){
             localStorage.setItem('@my-wallet:logged', 'true');
             setLogged(true);
         }else{

@@ -1,3 +1,7 @@
+// Last update: 08/jun/2022.
+// TODO: Refactoring the whole page desfragmenting as components.
+// Create subfolders and insert their component contents.
+
 import React, { useState, useMemo, useCallback } from 'react';
 
 import ContentHeader from '../../components/ContentHeader';

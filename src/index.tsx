@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { ThemeProvider } from './hooks/theme'
-import { AuthProvider } from './hooks/auth'
+import { ThemeProvider } from './hooks/useTheme'
+import { AuthProvider } from './hooks/useAuth'
 
 import App from './App';
 

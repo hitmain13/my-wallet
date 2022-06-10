@@ -27,8 +27,7 @@ const HistoryBox: React.FC<IHistoryBoxProps> = ({ data, legendData, lineColorAmo
     const higherAmount = () => data.map((item) => item.gainAmount > item.expenseAmount ? item.gainAmount : item.expenseAmount)
 
     let { width } = useWindowDimensions();
-    if (width <= 650) width=664 
-
+    if (width < 767) width += 280;
     return (
         <Container>
             <Header>

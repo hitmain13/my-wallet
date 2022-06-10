@@ -4,7 +4,7 @@ import emojis from '../../utils/emojis'
 
 import { Toggle } from '../Toggle'
 
-import { useTheme } from '../../hooks/theme'
+import { useTheme } from '../../hooks/useTheme'
 
 import { Container, Profile, Welcome, UserName } from './styles'
 

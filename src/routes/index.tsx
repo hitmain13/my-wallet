@@ -2,7 +2,7 @@ import React from 'react';
 
 import { BrowserRouter } from 'react-router-dom';
 
-import { useAuth } from '../hooks/auth'
+import { useAuth } from '../hooks/useAuth'
 
 import App from '../routes/app.routes'
 import Auth from '../routes/auth.routes'

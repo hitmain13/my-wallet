@@ -18,6 +18,8 @@ interface ITheme {
         quartiary: string;
 
         letter: string;
+        input: string;
+        
         white: string;
         black: string;
         gray: string;
@@ -32,7 +34,7 @@ interface ITheme {
 
 const ThemeContext = createContext<IThemeContext>({} as IThemeContext);
 
-const ThemeProvider = ({ children }: any) => {
+const ThemeProvider: React.FC<any> = ({ children }: any) => {
     const [theme, setTheme] = useState<ITheme>(() => {
         const themeSaved = localStorage.getItem("@my-wallet:theme")
         if (themeSaved) {

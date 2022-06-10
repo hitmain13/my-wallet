@@ -19,11 +19,11 @@ export const Container = styled.div<IContentProps>`
 
     position: relative;
     overflow: hidden;
+    
+    transition: all 0.2;
     font-size: 1.4em;
-    transition: all .2s;
-
     > h1 {
-        transition: all .2s;
+        transition: font-size 0.2s;
     }
 
     &:hover {
@@ -35,12 +35,16 @@ export const Container = styled.div<IContentProps>`
         small {
             transform: translateY(0px);
         }
+        > img {
+            transform: rotate(0deg);
+        }
     }
 
     > img {
         height: 125%;
 
         transform: rotate(-20deg);
+        transition: all .2s;
 
         position: absolute;
         top: -10px;
