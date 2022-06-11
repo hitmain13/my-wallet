@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface IModalContextProps {
     modalVisible: boolean
@@ -23,13 +23,13 @@ const ModalContext = React.createContext<IModalContextProps>({} as IModalContext
 
 export const ModalProvider: React.FC<Props> = ({ children }) => {
     const [modalVisible, setModalVisible] = React.useState(false)
-    const [content, setContent] = React.useState<any>()
+    const [content, setContent] = React.useState<any>('')
     const toggleModal = () => setModalVisible(!modalVisible)
-    const defineContent = (props: any) => {
-        console.log('useModal: ',props)
-        setContent(props)
-    }
-    
+    const defineContent = (props: any) => setContent(props)
+
+    useEffect(() => {
+        modalVisible === false && setContent('')
+    }, [modalVisible])
 
     return (
         <ModalContext.Provider value={{

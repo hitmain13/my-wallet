@@ -38,12 +38,14 @@ const AddFinanceCardForm: React.FC = () => {
     const { toggleModal, content } = useModal();
 
     useEffect(() => {
-        const { cardTitle, cardAmount, cardType, cardFrequency, cardDate } = content;
-        setTitle(cardTitle);
-        setAmount(cardAmount);
-        setType(cardType);
-        setFrequency(cardFrequency);
-        setDate(cardDate);
+        if (content) {
+            const { cardTitle, cardAmount, cardType, cardFrequency, cardDate } = content;
+            setTitle(cardTitle);
+            setAmount(cardAmount);
+            setType(cardType);
+            setFrequency(cardFrequency);
+            setDate(cardDate);
+        }
     }, [content])
 
 
