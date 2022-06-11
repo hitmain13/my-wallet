@@ -9,8 +9,6 @@ import ContentHeader from '../../components/ContentHeader'
 import SelectInput from '../../components/SelectInput'
 import HistoryFinanceCard from '../../components/HistoryFinanceCard'
 
-import gains from '../../repositories/gains'
-import expenses from '../../repositories/expenses';
 import formatCurrency from '../../utils/formatCurrency'
 import formatDate from '../../utils/formatDate'
 import listMonths from '../../utils/months'
@@ -18,11 +16,24 @@ import listMonths from '../../utils/months'
 import { Container, Content, Filters } from './styles'
 
 interface IData {
-    description: string,
-    amountFormatted: string,
-    dateFormatted: string,
+    title: string
+    amount: string
+    amountFormatted: string
+    type: string
+    frequency: string
+    date: string
+    dateFormatted: string
     tagColor: string
 }
+
+type IReleaseProps = {
+    title: string,
+    amount: string,
+    type: string,
+    frequency: string,
+    date: string,
+    description: string
+}[]
 
 const List: React.FC = () => {
     const [cardData, setCardData] = useState<IData[]>([]);
@@ -31,6 +42,12 @@ const List: React.FC = () => {
     const [selectedFrequencyType, setSelectedFrequencyType] = useState(['recurrent', 'eventual'])
 
     const { balanceType } = useParams();
+
+    const storedGains = localStorage.getItem('@my-wallet:gains') || null
+    const gains: IReleaseProps = storedGains ? JSON.parse(storedGains) : {}
+
+    const storedExpenses = localStorage.getItem('@my-wallet:expenses') || null
+    const expenses: IReleaseProps = storedExpenses ? JSON.parse(storedExpenses) : {}
 
     const listDate = useMemo(() => {
         return balanceType === 'entry-balance' ? gains : expenses;
@@ -96,7 +113,7 @@ const List: React.FC = () => {
             throw new Error('Invalid month value. Insert a acceptable value (0 - 24).')
         }
     }
-    
+
     const handleYearSelected = (year: string) => {
         try {
             const parseMonth = Number(year);
@@ -109,7 +126,7 @@ const List: React.FC = () => {
 
     useEffect(() => {
         const filteredAllDates = listDate.filter(currentCard => {
-            const cardDate = new Date(currentCard.date)  // A cardData é devolvida com dia anterior da cardData real.
+            const cardDate = new Date(currentCard.date)  // A cardDate é devolvida com dia anterior da cardDate real.
             cardDate.setDate(cardDate.getDate() + 1)     // É aplicada adição de +1 dia com o setDate para correção.
             Intl.DateTimeFormat('pt-br').format(cardDate)
 
@@ -121,8 +138,12 @@ const List: React.FC = () => {
 
         const formattedDate = filteredAllDates.map(item => {
             return {
-                description: item.description,
+                title: item.title,
+                amount: item.amount,
                 amountFormatted: formatCurrency(Number(item.amount)),
+                type: item.type,
+                frequency: item.frequency,
+                date: item.date,
                 dateFormatted: formatDate(item.date),
                 tagColor: item.frequency === 'eventual' ? '#4E41F0' : '#E44C4E'
             }
@@ -165,15 +186,19 @@ const List: React.FC = () => {
             </Filters>
 
             <Content> {
-                cardData.map((item, index) => (
-                    <HistoryFinanceCard
-                        key={index}
-                        tagColor={item.tagColor}
-                        title={item.description}
-                        subtitle={item.dateFormatted}
-                        amount={item.amountFormatted}
-                    />
-                ))
+                cardData.map((item, index) => {
+                    return (
+                        <HistoryFinanceCard
+                            key={index}
+                            cardTitle={item.title}
+                            cardAmount={item.amount}
+                            cardType={item.type}
+                            cardFrequency={item.frequency}
+                            cardDate={item.date}
+                            tagColor={item.tagColor}
+                        />
+                    )
+                })
             }
             </Content>
         </Container>

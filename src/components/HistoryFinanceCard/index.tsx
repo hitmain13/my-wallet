@@ -4,20 +4,40 @@ import { Container, Tag, TagContainer, EditButton, DeleteButton } from './styles
 
 import { MdEdit, MdDeleteForever } from 'react-icons/md'
 
+import { useModal } from '../../hooks/useModals'
+
 interface IHistoryFinanceCardProps {
-    tagColor: string;
-    title: string;
-    subtitle: string;
-    amount: string;
+    cardTitle: string
+    cardAmount: string
+    cardType: string
+    cardFrequency: string
+    cardDate: string
+    tagColor: string
 }
 
-const HistoryFinanceCard: React.FC<IHistoryFinanceCardProps> = ({ tagColor, title, subtitle, amount }) => {
+const HistoryFinanceCard: React.FC<IHistoryFinanceCardProps> = ({ cardTitle, cardAmount, cardType, cardFrequency, cardDate, tagColor }) => {
     const [isExpanded, setIsExpanded] = useState(false);
-    const handleExpandedItem = () => { setIsExpanded(!isExpanded); }
+    const { toggleModal, defineContent } = useModal();
+
+    const handleExpandedItem = () => setIsExpanded(!isExpanded)
+
     return (
         <Container>
-            <EditButton isExpanded={isExpanded} color='#4E41F0' onClick={() => console.log(title, subtitle, amount)}><MdEdit /></EditButton>
-            <DeleteButton isExpanded={isExpanded} color='#E44C4E'><MdDeleteForever /></DeleteButton>
+            <EditButton
+                isExpanded={isExpanded}
+                color='#4E41F0'
+                onClick={() => {
+                    toggleModal();
+                    defineContent({ cardTitle, cardAmount, cardType, cardFrequency, cardDate })
+                }}
+            >
+                <MdEdit />
+            </EditButton>
+            <DeleteButton
+                isExpanded={isExpanded}
+                color='#E44C4E'>
+                <MdDeleteForever />
+            </DeleteButton>
             <TagContainer
                 onClick={handleExpandedItem}
                 isExpanded={isExpanded}
@@ -25,10 +45,10 @@ const HistoryFinanceCard: React.FC<IHistoryFinanceCardProps> = ({ tagColor, titl
             >
                 <Tag color={tagColor} />
                 <div>
-                    <span>{title}</span>
-                    <small>{subtitle}</small>
+                    <span>{cardTitle}</span>
+                    <small>{cardDate}</small>
                 </div>
-                <h3>{amount}</h3>
+                <h3>{cardAmount}</h3>
             </TagContainer>
         </Container>
     )
