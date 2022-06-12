@@ -12,8 +12,6 @@ import PieChartBox from '../../components/PieChartBox';
 import HistoryBox from '../../components/HistoryBox';
 import BarChartBox from '../../components/BarChartBox';
 
-import expenses from '../../repositories/expenses';
-import gains from '../../repositories/gains';
 import monthsList from '../../utils/months';
 
 import happySVG from '../../assets/happy.svg';
@@ -22,9 +20,28 @@ import grinningSVG from '../../assets/grinning.svg';
 
 import { Container, Content } from './styles';
 
+type IReleaseProps = {
+    title: string,
+    amount: string,
+    type: string,
+    frequency: string,
+    date: string,
+    description: string
+}[]
+
 const Dashboard: React.FC = () => {
     const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth() + 1);
     const [yearSelected, setYearSelected] = useState<number>(new Date().getFullYear());
+
+    const gainData = localStorage.getItem('@my-wallet:gains')
+    if (gainData === null) localStorage.setItem('@my-wallet:gains', JSON.stringify([]))
+    const storedGains = localStorage.getItem('@my-wallet:gains') || null
+    const [gains] = useState<IReleaseProps>(storedGains ? JSON.parse(storedGains) : {})
+
+    const expenseData = localStorage.getItem('@my-wallet:expenses')
+    if (expenseData === null) localStorage.setItem('@my-wallet:expenses', JSON.stringify([]))
+    const storedExpenses = localStorage.getItem('@my-wallet:expenses') || null
+    const [expenses] = useState<IReleaseProps>(storedExpenses ? JSON.parse(storedExpenses) : {})
 
     const months = useMemo(() => {
         return monthsList.map((month, index) => {
@@ -134,7 +151,6 @@ const Dashboard: React.FC = () => {
 
     const pieChartRelationExpensesVSGains = useMemo(() => {
         const total = totalGain + totalExpense;
-
 
         const gainsPercentage = Number(((totalGain / total) * 100).toFixed(1));
         const expensesPercentage = Number(((totalExpense / total) * 100).toFixed(1));

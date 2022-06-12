@@ -4,6 +4,10 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     margin: 40px;
+
+    @media (max-width: 767px) {
+        margin: 25px;
+    }
 `;
 
 export const Form = styled.form`
@@ -70,6 +74,9 @@ export const HeaderContent = styled.div``;
 export const Content = styled.div`
     display: flex;
     justify-content: space-between;
+    @media (max-width: 1023px) {
+        flex-wrap: wrap;
+    }
 `;
 export const Select = styled.select`
     width: 100px;
@@ -80,17 +87,24 @@ export const SelectLabel = styled.label`
     flex-direction: column;
     color: ${props => props.theme.colors.letter};
     font-size: 14px;
-    margin: 10px 0 0 0;
+    margin: 20px 0 0 0;
 
     > select, input {
         width: 100%;
+        height: 30px;
 
         margin: 7px 0;
-        padding: 10px;
+        padding: 3px;
+
+        font-size: 12px;
 
         border-radius: 5px;
         color: #000;
         background-color: ${props => props.theme.colors.input};
+
+        @media (max-width: 1023px) {
+            width: 120px;
+        }
     }
 `;
 
@@ -98,9 +112,9 @@ export const FooterContent = styled.div`
     display: flex;
     flex-direction: column;
 `;
+
 export const DescriptionInput = styled.input`
     width: 100%;
-    min-height: 100px;
 
     margin: 7px 0;
     padding: 10px;
@@ -110,6 +124,7 @@ export const DescriptionInput = styled.input`
     color: #000;
     background-color: ${props => props.theme.colors.input};
 `;
+
 export const Footer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -131,10 +146,11 @@ export const Input = styled.input`
 export const Button = styled.button`
     width: 150px;
 
-    margin: 7px 0;
     padding: 10px;
 
     border-radius: 5px;
+
+    font-size: 1em;
 
     font-weight: bold;
     color: ${props => props.theme.colors.letter};
@@ -144,7 +160,12 @@ export const Button = styled.button`
 
     &:hover {
         opacity: 0.7;
-}`;
+}
+    @media (max-width: 767px) {
+        margin: 10px 0 0 0;
+        width: 120px;
+    }
+`;
 
 export const CloseButton = styled.button`
     position: relative;

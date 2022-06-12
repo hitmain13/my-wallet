@@ -36,6 +36,16 @@ type IReleaseProps = {
 }[]
 
 const List: React.FC = () => {
+    const gainData = localStorage.getItem('@my-wallet:gains')
+    if (gainData === null) localStorage.setItem('@my-wallet:gains', JSON.stringify([]))
+    const storedGains = localStorage.getItem('@my-wallet:gains') || null
+    const [gains] = useState<IReleaseProps>(storedGains ? JSON.parse(storedGains) : {})
+
+    const expenseData = localStorage.getItem('@my-wallet:expenses')
+    if (expenseData === null) localStorage.setItem('@my-wallet:expenses', JSON.stringify([]))
+    const storedExpenses = localStorage.getItem('@my-wallet:expenses') || null
+    const [expenses] = useState<IReleaseProps>(storedExpenses ? JSON.parse(storedExpenses) : {})
+
     const [cardData, setCardData] = useState<IData[]>([]);
     const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth() + 1);
     const [yearSelected, setYearSelected] = useState<number>(new Date().getFullYear());
@@ -43,15 +53,9 @@ const List: React.FC = () => {
 
     const { balanceType } = useParams();
 
-    const storedGains = localStorage.getItem('@my-wallet:gains') || null
-    const gains: IReleaseProps = storedGains ? JSON.parse(storedGains) : {}
-
-    const storedExpenses = localStorage.getItem('@my-wallet:expenses') || null
-    const expenses: IReleaseProps = storedExpenses ? JSON.parse(storedExpenses) : {}
-
     const listDate = useMemo(() => {
         return balanceType === 'entry-balance' ? gains : expenses;
-    }, [balanceType])
+    }, [balanceType, expenses, gains])
 
     const pageDatas = useMemo(() => {
         return balanceType === 'entry-balance' ? {
@@ -63,15 +67,14 @@ const List: React.FC = () => {
             lineColor: '#E44C4E',
             listDate: expenses
         }
-    }, [balanceType])
+    }, [balanceType, expenses, gains])
 
     const months = useMemo(() => {
         return listMonths.map((month, index) => {
             return {
                 value: index + 1,
                 label: month
-            }
-        })
+            }})
     }, [])
 
     const years = useMemo(() => {
@@ -83,15 +86,13 @@ const List: React.FC = () => {
 
             if (!uniqueYears.includes(year)) {
                 uniqueYears.push(year);
-            }
-        })
+            }})
         return uniqueYears.map(year => {
             return {
                 value: year,
                 label: year,
-            }
-        })
-    }, [pageDatas])
+            }})
+    }, [listDate])
 
     const handleFrequencyFilter = (frequency: string) => {
         const frequencyFiltered = selectedFrequencyType.findIndex(item => item === frequency)
@@ -158,15 +159,12 @@ const List: React.FC = () => {
                 <SelectInput
                     options={months}
                     defaultValue={monthSelected}
-                    onChange={(e) => handleMonthSelected(e.target.value)}
-                />
+                    onChange={(e) => handleMonthSelected(e.target.value)}/>
                 <SelectInput
                     options={years}
                     defaultValue={yearSelected}
-                    onChange={(e) => handleYearSelected(e.target.value)}
-                />
+                    onChange={(e) => handleYearSelected(e.target.value)}/>
             </ContentHeader>
-
             <Filters>
                 <button
                     type="button"
@@ -184,21 +182,21 @@ const List: React.FC = () => {
                     Eventuais
                 </button>
             </Filters>
-
             <Content> {
-                cardData.map((item, index) => {
-                    return (
-                        <HistoryFinanceCard
-                            key={index}
-                            cardTitle={item.title}
-                            cardAmount={item.amount}
-                            cardType={item.type}
-                            cardFrequency={item.frequency}
-                            cardDate={item.date}
-                            tagColor={item.tagColor}
-                        />
-                    )
-                })
+                cardData.map((item, index) => (
+                    <HistoryFinanceCard
+                        key={index}
+                        cardTitle={item.title}
+                        cardAmountFormatted={item.amountFormatted}
+                        cardAmount={item.amount}
+                        cardType={item.type}
+                        cardFrequency={item.frequency}
+                        cardDate={item.date}
+                        cardDateFormatted={item.dateFormatted}
+                        cardIndex={index}
+                        tagColor={item.tagColor}
+                    />
+                ))
             }
             </Content>
         </Container>

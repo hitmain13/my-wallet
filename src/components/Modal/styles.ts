@@ -25,7 +25,7 @@ export const Overlay = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-    width: 60%;
+    width: 50%;
     height: 550px;
     
     background-color: ${props => props.theme.colors.primary};
@@ -33,12 +33,15 @@ export const ModalContainer = styled.div`
     border-radius: 5px;
 
     z-index: 3;
+    @media (max-width: 1023px) {
+        width: 90%;
+    }
+
+    @media (min-width: 767px) {
+        height: 470px;
+    }
 `;
 
 export const Header = styled.div`
     background-color: red;
 `;
-
-export const Content = styled.div``;
-
-export const Footer = styled.div``;

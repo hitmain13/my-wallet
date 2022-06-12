@@ -18,7 +18,7 @@ const Modal: React.FC = () => {
             {modalVisible && (
                 <Overlay onDoubleClick={toggleModal}>
                     <ModalContainer onDoubleClick={e => e.stopPropagation()}>
-                        <AddFinanceCardForm/>
+                        <AddFinanceCardForm />
                     </ModalContainer>
                 </Overlay>
             )}

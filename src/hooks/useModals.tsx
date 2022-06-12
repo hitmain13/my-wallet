@@ -14,9 +14,13 @@ type Props = {
 type IDefineContentProps = {
     cardTitle: string
     cardAmount: string
+    cardAmountFormatted: string
     cardType: string
     cardFrequency: string
     cardDate: string
+    cardDateFormatted: string
+    cardIndex: number
+    modalType?: boolean | undefined
 }
 
 const ModalContext = React.createContext<IModalContextProps>({} as IModalContextProps)
