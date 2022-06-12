@@ -15,6 +15,18 @@ export const Container = styled.div<IContainerProps>`
 
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+    > span {
+        margin: 5px;
+        font-size: 10px;
+        color: ${props => props.theme.colors.white};
+        position: fixed;
+        bottom: 0;
+        @media (min-width: 767px) {
+            margin: 0px;
+            bottom: 1%;
+        }
+    }
         
     @media (max-width: 767px) {
         padding-left: 3px;

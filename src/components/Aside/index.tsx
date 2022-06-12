@@ -75,6 +75,7 @@ const Aside: React.FC = () => {
                     Sair
                 </MenuItemButton>
             </MenuContainer>
+            <span>Desenvolvido com carinho por Fábio Matsumoto.</span>
         </Container>
     )
 }

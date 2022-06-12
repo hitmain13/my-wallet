@@ -1,8 +1,22 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 interface IContentProps {
     color: string;
 }
+
+const animate = keyframes`
+    0% {
+        transform: translateY(-300px);
+        opacity: 0.1;
+    }
+    30% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+`;
 
 export const Container = styled.div<IContentProps>`
     width: 32%;
@@ -22,6 +36,9 @@ export const Container = styled.div<IContentProps>`
     
     transition: all 0.2;
     font-size: 1.4em;
+
+    animation: ${animate} 0.5s;
+
     > h1 {
         transition: font-size 0.2s;
     }

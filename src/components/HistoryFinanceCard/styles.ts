@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 interface ITagProps {
     color: string;
@@ -8,8 +8,23 @@ interface ITagContainerProps {
     color: string;
 }
 
+const animate = keyframes`
+    0% {
+        transform: translateX(100vh);
+        opacity: 0.1;
+    }
+    30% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+`;
+
 export const Container = styled.div`
     display: flex;
+    animation: ${animate} 0.3s;
 `;
 
 export const TagContainer = styled.div<ITagContainerProps>`

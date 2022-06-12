@@ -1,4 +1,18 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const animate = keyframes`
+    0% {
+        transform: translateY(100vh);
+        opacity: 0.1;
+    }
+    30% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+`;
 
 export const Container = styled.div`
     width: 100%;
@@ -9,6 +23,7 @@ export const Container = styled.div`
     color: ${props => props.theme.colors.white};
 
     border-radius: 7px;
+    animation: ${animate} 0.5s;
 `;
 
 export const ChartContainer = styled.div`

@@ -1,4 +1,18 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const animate = keyframes`
+    0% {
+        transform: translateX(-50vh);
+        opacity: 0.1;
+    }
+    30% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+`;
 
 export const Container = styled.div`
     width: 48%;
@@ -16,6 +30,8 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    animation: ${animate} .5s;
 
     > header img {
         width: 35px;
