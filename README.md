@@ -37,5 +37,10 @@ https://user-images.githubusercontent.com/41245525/173254453-cf792688-fc83-4d6d-
     
 You can check online application clicking here: 
 [my-wallet-react-tsx.vercel.app/](https://my-wallet-react-tsx.vercel.app/)
+
+Credentials: 
+email: fabio@dashboard.com
+password: 123
+(or just click "Acessar" with the blank inputs)
     
 [![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/higorpo/higorflix/blob/master/LICENSE) [![siga-me](https://img.shields.io/github/followers/hitmain13?label=Siga-me&style=social)]()
