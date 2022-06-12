@@ -14,7 +14,7 @@ import { Container, Logo, Form, FormTitle, Label, FooterContainer, Link } from '
 import axios from 'axios';
 
 const Login: React.FC = () => {
-    const [email, setEmail] = useState<string>('email@email.com');
+    const [email, setEmail] = useState<string>('fabio@dashboard.com');
     const [password, setPassword] = useState<string>('123');
     const [repoDate, setRepoDate] = useState(null);
 

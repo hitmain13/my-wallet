@@ -71,7 +71,7 @@ export const Label = styled.label`
 `;
 
 export const FooterContainer = styled.div`
-    position: absolute;
+    position: fixed;
     bottom: 1%;
 `;
 
