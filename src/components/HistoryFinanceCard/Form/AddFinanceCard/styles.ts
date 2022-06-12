@@ -15,7 +15,8 @@ export const Form = styled.form`
     flex-direction: column;
 
     width: 100%;
-    height: auto;
+    max-height: 100vh;
+    overflow: auto;
 
     justify-content: space-between;
 `;
@@ -163,7 +164,7 @@ export const Button = styled.button`
 }
     @media (max-width: 767px) {
         margin: 10px 0 0 0;
-        width: 120px;
+        width: 100px;
     }
 `;
 

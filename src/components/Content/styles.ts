@@ -11,17 +11,18 @@ export const Container = styled.div`
     height: calc(100vh - 70px);
     overflow-y: scroll;
 
-    ::-webkit-scrollbar {
+    @media (min-width: 768px) {
+        ::-webkit-scrollbar {
         width: 10px;
-    }
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: ${props => props.theme.colors.secondary};
 
-    ::-webkit-scrollbar-thumb {
-        background-color: ${props => props.theme.colors.secondary};
+            border-radius: 10px;
+        }
 
-        border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background-color: ${props => props.theme.colors.tertiary};
+        ::-webkit-scrollbar-track {
+            background-color: ${props => props.theme.colors.tertiary};
+        }
     }
 `;

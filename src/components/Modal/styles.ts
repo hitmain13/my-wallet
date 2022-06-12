@@ -26,7 +26,8 @@ export const Overlay = styled.div`
 
 export const ModalContainer = styled.div`
     width: 50%;
-    height: 550px;
+    max-height: 100vh;
+    overflow: auto;
     
     background-color: ${props => props.theme.colors.primary};
 
