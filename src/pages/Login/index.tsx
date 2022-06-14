@@ -1,22 +1,31 @@
 import React, { useState, useMemo } from 'react';
 
 import logoSVG from '../../assets/logo.svg';
-
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 import P from '../../components/Message'
-
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai'
+import { Container, Logo, Form, FormTitle, Label, FooterContainer, Link } from './styles'
 
 import { useAuth } from '../../hooks/useAuth'
-
-import { Container, Logo, Form, FormTitle, Label, FooterContainer, Link } from './styles'
 import axios from 'axios';
 
+const initialState = { 
+    email: 'fabio@dashboard.com',
+    password: '123',
+  }
+
 const Login: React.FC = () => {
-    const [email, setEmail] = useState<string>('fabio@dashboard.com');
-    const [password, setPassword] = useState<string>('123');
+    const [user, setUser] = useState(initialState);
     const [repoDate, setRepoDate] = useState(null);
+    console.log(user.email, user.password)
+
+    const onChange = (event: React.FormEvent<HTMLInputElement>) => {
+        const { name, value } = event.currentTarget;
+        setUser({ ...user, 
+            [name]: value
+        });
+    }
 
     const { signIn } = useAuth();
 
@@ -43,32 +52,36 @@ const Login: React.FC = () => {
                 <img src={logoSVG} alt="My Wallet" />
                 <h2>My Wallet</h2>
             </Logo>
-            <Form onSubmit={(event) => signIn(email, password, event)}>
+            <Form onSubmit={(event) => signIn(user.email, user.password, event)}>
                 <FormTitle>Entrar</FormTitle>
 
                 <Label>E-mail</Label>
                 <Input
                     type='email'
                     placeholder='Digite seu e-mail'
-                    onChange={(e) => setEmail(e.target.value)}
+                    name='email'
+                    onChange={onChange}
+                    value={user.email}
                 />
                 <Label>Senha</Label>
                 <Input
                     type='password'
                     placeholder='Digite sua senha'
-                    onChange={(e) => setPassword(e.target.value)}
+                    name='password'
+                    onChange={onChange}
+                    value={user.password}
                 />
                 <Button type='submit'>Acessar</Button>
             </Form>
             <Label>Para testar, clique em Acessar!</Label>
             <br />
             <FooterContainer>
-            <Link target="_blank" href="https://www.linkedin.com/in/fabio-matsumoto-7a8682173/">
-                <AiFillLinkedin/>LinkedIn
-            </Link>
-            <Link target="_blank" href="https://github.com/hitmain13/my-wallet-react.js">
-                <AiFillGithub />Link do repositório
-            </Link>
+                <Link target="_blank" href="https://www.linkedin.com/in/fabio-matsumoto-7a8682173/">
+                    <AiFillLinkedin />LinkedIn
+                </Link>
+                <Link target="_blank" href="https://github.com/hitmain13/my-wallet-react.js">
+                    <AiFillGithub />Link do repositório
+                </Link>
                 <Label>Projeto ainda em desenvolvimento. Última atualização: <P message={repoDate} />. (GitHub API)</Label>
             </FooterContainer>
         </Container>

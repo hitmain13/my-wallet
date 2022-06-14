@@ -5,6 +5,7 @@ export const Container = styled.div`
 
     display: flex;
     flex: 1;
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -22,6 +23,7 @@ export const Logo = styled.div`
     width: 300px;
     height: 100px;
     
+    margin-top: auto;
     padding: 10px;
     border-radius: 300px 300px 0 0 ;
 
@@ -71,8 +73,9 @@ export const Label = styled.label`
 `;
 
 export const FooterContainer = styled.div`
-    position: fixed;
-    bottom: 1%;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
 `;
 
 export const Link = styled.a`
