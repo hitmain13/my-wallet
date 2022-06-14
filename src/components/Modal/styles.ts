@@ -34,12 +34,17 @@ export const ModalContainer = styled.div`
     border-radius: 5px;
 
     z-index: 3;
+
     @media (max-width: 1023px) {
         width: 90%;
     }
 
     @media (min-width: 767px) {
         height: 470px;
+    }
+
+    @media (max-width: 374px) {
+        width: 100%;
     }
 `;
 
