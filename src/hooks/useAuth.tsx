@@ -8,7 +8,7 @@ interface IAuthContext {
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
-const AuthProvider= ({ children }: any) => {
+const AuthProvider = ({ children }: any) => {
     const [logged, setLogged] = useState<boolean>(() => {
         const isLogged = localStorage.getItem('@my-wallet:logged');
 
@@ -17,10 +17,10 @@ const AuthProvider= ({ children }: any) => {
 
     const signIn = (email: string, password: string, event: React.ChangeEvent) => {
         event.preventDefault();
-        if(email === 'fabio@dashboard.com' && password === '123'){
+        if (email === 'fabio@dashboard.com' && password === '123') {
             localStorage.setItem('@my-wallet:logged', 'true');
             setLogged(true);
-        }else{
+        } else {
             alert('Senha ou usuário inválidos!');
         }
     }
@@ -31,7 +31,7 @@ const AuthProvider= ({ children }: any) => {
     }
 
     return (
-        <AuthContext.Provider value={{logged, signIn, signOut}}>
+        <AuthContext.Provider value={{ logged, signIn, signOut }}>
             {children}
         </AuthContext.Provider>
     );
