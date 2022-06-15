@@ -4,6 +4,7 @@
 
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
+import dateFormat from 'dateformat'
 
 import ContentHeader from '../../components/ContentHeader'
 import SelectInput from '../../components/SelectInput'
@@ -127,7 +128,7 @@ const List: React.FC = () => {
 
     useEffect(() => {
         const filteredAllDates = listDate.filter(currentCard => {
-            const cardDate = new Date(currentCard.date)  // A cardDate é devolvida com dia anterior da cardDate real.
+            let cardDate = new Date(currentCard.date)  // A cardDate é devolvida com dia anterior da cardDate real.
             cardDate.setDate(cardDate.getDate() + 1)     // É aplicada adição de +1 dia com o setDate para correção.
             Intl.DateTimeFormat('pt-br').format(cardDate)
 

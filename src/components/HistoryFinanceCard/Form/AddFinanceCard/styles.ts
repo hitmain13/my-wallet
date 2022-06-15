@@ -8,6 +8,10 @@ export const Container = styled.div`
     @media (max-width: 767px) {
         margin: 25px;
     }
+    @media (max-width: 374px) {
+        margin: 10px;
+        font-size: 12px;
+    }
 `;
 
 export const Form = styled.form`
@@ -16,7 +20,6 @@ export const Form = styled.form`
 
     width: 100%;
     max-height: 100vh;
-    overflow: auto;
 
     justify-content: space-between;
 `;
@@ -163,7 +166,7 @@ export const Button = styled.button`
         opacity: 0.7;
 }
     @media (max-width: 767px) {
-        margin: 10px 0 0 0;
+        margin: 10px 0 50px 0;
         width: 100px;
     }
 `;

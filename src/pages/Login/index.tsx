@@ -10,24 +10,28 @@ import { Container, Logo, Form, FormTitle, Label, FooterContainer, Link } from '
 import { useAuth } from '../../hooks/useAuth'
 import axios from 'axios';
 
-const initialState = { 
+const initialState = {
     email: 'fabio@dashboard.com',
     password: '123',
-  }
+}
+interface IRepo {
+    name: string,
+    pushed_at: string,
+    date: React.SetStateAction<null>
+}
 
 const Login: React.FC = () => {
     const [user, setUser] = useState(initialState);
     const [repoDate, setRepoDate] = useState(null);
-    console.log(user.email, user.password)
+    const { signIn } = useAuth();
 
     const onChange = (event: React.FormEvent<HTMLInputElement>) => {
         const { name, value } = event.currentTarget;
-        setUser({ ...user, 
+        setUser({
+            ...user,
             [name]: value
         });
     }
-
-    const { signIn } = useAuth();
 
     useMemo(() => {
         axios.get('https://api.github.com' + process.env.REACT_APP_GITHUB_MY_REPOS, {
@@ -37,12 +41,12 @@ const Login: React.FC = () => {
         })
             .then((res) => {
                 const data = res.data;
-                data.map((repo: any) => ({
+                data.map((repo: IRepo) => ({
                     name: repo.name,
                     date: repo.pushed_at,
                 }))
-                    .filter((repo: any) => repo.name === process.env.REACT_APP_APP_NAME)
-                    .map((repo: any) => setRepoDate(repo.date))
+                    .filter((repo: IRepo) => repo.name === process.env.REACT_APP_APP_NAME)
+                    .map((repo: IRepo) => setRepoDate(repo.date))
             })
     }, [])
 

@@ -5,7 +5,7 @@ import { Container } from './styles'
 import formatDate from '../../utils/formatDate';
 
 interface IMessageProps {
-    message: Promise<string> | any;
+    message: React.SetStateAction<any> ;
 }
 
 const Message: React.FC<IMessageProps> = ({ message }) => {

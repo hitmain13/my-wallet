@@ -1,7 +1,8 @@
+import dateFormat from 'dateformat'
+
 const formatDate = (date: string): string => {
-    const formattedDate = new Date(date)
-    formattedDate.setDate(formattedDate.getDate()+1)
-    return Intl.DateTimeFormat('pt-br').format(formattedDate)
+    const pickedDate = new Date(date);
+    return dateFormat(pickedDate, "dd/mm/yyyy");
 }
 
 export default formatDate;
