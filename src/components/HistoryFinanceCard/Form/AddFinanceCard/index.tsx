@@ -139,7 +139,7 @@ const AddFinanceCardForm: React.FC = () => {
                         </select>
                     </SelectLabel>
                     <SelectLabel>Valor
-                        <NumberFormat
+                        <NumberFormat  //input com máscara
                             prefix="R$ "
                             placeholder="R$ 0,00"
                             thousandSeparator='.'
