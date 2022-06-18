@@ -4,7 +4,6 @@
 
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
-import dateFormat from 'dateformat'
 
 import ContentHeader from '../../components/ContentHeader'
 import SelectInput from '../../components/SelectInput'
