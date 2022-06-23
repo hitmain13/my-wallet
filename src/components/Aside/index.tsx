@@ -27,20 +27,20 @@ import { useAuth } from '../../hooks/useAuth'
 import { useModal } from '../../hooks/useModals';
 
 const Aside: React.FC = () => {
-    const [toggleMenuIsOpenned, setToggleMenuIsOpenned] = useState(false);
+    const [menuIsOpenned, setMenuIsOpenned] = useState(false);
     const { signOut } = useAuth()
     const { toggleModal } = useModal()
 
-    const handleToggleMenu = () => setToggleMenuIsOpenned(!toggleMenuIsOpenned)
+    const handleToggleMenu = () => setMenuIsOpenned(!menuIsOpenned)
 
     return (
-        <Container menuIsOpen={toggleMenuIsOpenned}>
+        <Container menuIsOpen={menuIsOpenned}>
             <Header>
                 <ToggleMenu
-                    menuIsOpen={toggleMenuIsOpenned}
+                    menuIsOpen={menuIsOpenned}
                     onClick={handleToggleMenu}
                 >
-                    {toggleMenuIsOpenned ? <MdClose /> : <MdMenu />}
+                    {menuIsOpenned ? <MdClose /> : <MdMenu />}
                 </ToggleMenu>
                 <LogoImg src={logoImg} alt="Logo Minha Carteira" />
                 <Title>My Wallet</Title>
