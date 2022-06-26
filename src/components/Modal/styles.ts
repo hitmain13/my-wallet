@@ -18,7 +18,10 @@ export const Overlay = styled.div`
     width: 100vw;
     height: 100vh;
     
+    backdrop-filter: blur(3px);
     background-color: #0005;
+
+    transition: all 0.2s;
 
     visibility: visible;
     z-index: 2;
