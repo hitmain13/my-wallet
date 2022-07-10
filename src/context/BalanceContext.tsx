@@ -1,5 +1,35 @@
-import * as s from './styles'
+import React, { createContext, useState, useEffect } from "react";
+import { BalanceProps } from "../types/BalanceType";
 
-const BalanceContext: React.FC = () => (<></>)
+type BalanceProviderProps = {
+	// no React 18+, necessário tipagem do children através do type ou interface;
+	children?: React.ReactNode;
+};
 
-export default BalanceContext
+interface IBalanceContext {
+	totalGainsAmount: BalanceProps;
+	totalExpensesAmount: BalanceProps;
+}
+
+export const BalanceContext = createContext<IBalanceContext>({} as IBalanceContext);
+
+export const BalanceProvider: React.FC<BalanceProviderProps> = ({ children }) => {
+	const localGains = localStorage.getItem("@my-wallet:gains");
+	const localExpenses = localStorage.getItem("@my-wallet:expenses");
+
+	useEffect(() => {
+		const totalGainsAmount = localGains ? localGains : {};
+		const totalExpensesAmount = localExpenses ? localExpenses : {};
+	}, [localGains, localExpenses]);
+
+	return (
+		<BalanceContext.Provider
+			value={{
+				totalGainsAmount,
+				totalExpensesAmount,
+			}}
+		>
+			{children}
+		</BalanceContext.Provider>
+	);
+};
