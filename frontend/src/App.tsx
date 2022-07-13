@@ -1,10 +1,10 @@
-import React from 'react';
-import { ModalProvider } from './hooks/useModals'
-import Modal from './components/Modal'
-import { ThemeProvider } from 'styled-components'
-import { useTheme } from './hooks/useTheme'
-import GlobalStyles from './styles/GlobalStyles';
-import Routes from './routes';
+import React from "react";
+import { ModalProvider } from "./hooks/useModals";
+import { ThemeProvider } from "styled-components";
+import { useTheme } from "./hooks/useTheme";
+import GlobalStyles from "./styles/GlobalStyles";
+import Modal from "./components/Modal";
+import Routes from "./routes";
 
 const App: React.FC = () => {
   const { theme } = useTheme();
@@ -16,7 +16,7 @@ const App: React.FC = () => {
         <Routes />
       </ThemeProvider>
     </ModalProvider>
-  )
-}
+  );
+};
 
 export default App;
