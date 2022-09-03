@@ -10,10 +10,11 @@ import (
 	"github.com/hitmain13/my-wallet/backend/domain/users"
 	"github.com/hitmain13/my-wallet/backend/services"
 	"github.com/hitmain13/my-wallet/backend/utils/errors"
+	dotenv "github.com/hitmain13/my-wallet/backend/utils/variables"
 )
 
-const (
-	SecretKey = "qwe123"
+var (
+	SecretKey = dotenv.GetVariableByName("DATABASE_SECRETKEY")
 )
 
 func Register(c *gin.Context) {
